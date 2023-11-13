@@ -9,13 +9,12 @@ const reducer = (state = 0, action) => {
   }
 }
 const store = createStore(reducer)
-console.log(store.getState())
+store.subscribe(() => {
+  console.log(store.getState()) //will be fulfilled when the state is changed
+})
 store.dispatch({ type: 'INC' })
-console.log(store.getState())
 store.dispatch({ type: 'INC' })
-console.log(store.getState())
 store.dispatch({ type: 'INC' })
-console.log(store.getState())
 // let state = reducer(undefined, { type: 'INC', })
 // state = reducer(state, { type: 'INC', })
 // state = reducer(state, { type: 'INC', })
