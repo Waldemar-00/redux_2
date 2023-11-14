@@ -11,17 +11,20 @@ const reducer = (state = 0, action) => {
   }
 }
 const store = createStore(reducer)
+const increment = () => ({ type: 'INC' })
+const decrement = () => ({ type: 'DEC' })
+const random = (value) => ({type: 'RANDOM', payload: +value})
 store.subscribe(() => {
   document.querySelector('.counter').innerText = store.getState() //will be fulfilled when the state is changed
 })
 document.querySelector('#dec').addEventListener('click', () => {
-  store.dispatch({ type: 'DEC' })
+  store.dispatch(decrement())
 })
 document.querySelector('#inc').addEventListener('click', () => {
-  store.dispatch({ type: 'INC' })
+  store.dispatch(increment())
 })
 document.querySelector('#random').addEventListener('click', () => {
-  store.dispatch({ type: 'RANDOM', payload: +(Math.random() * 100).toFixed() })
+  store.dispatch(random((Math.random() * 100).toFixed()))
 })
 createRoot(document.querySelector('#root')).render(
   <StrictMode>
