@@ -6,7 +6,7 @@ const reducer = (state = 0, action) => {
   switch(action.type) {
     case 'INC': return state + 1 // need 'return'
     case 'DEC': return state - 1
-    case 'RANDOM' : return state = (Math.random() * 100).toFixed()
+    case 'RANDOM' : return state = action.payload
     default: return state
   }
 }
@@ -21,7 +21,7 @@ document.querySelector('#inc').addEventListener('click', () => {
   store.dispatch({ type: 'INC' })
 })
 document.querySelector('#random').addEventListener('click', () => {
-  store.dispatch({ type: 'RANDOM' })
+  store.dispatch({ type: 'RANDOM', payload: +(Math.random() * 100).toFixed() })
 })
 createRoot(document.querySelector('#root')).render(
   <StrictMode>
