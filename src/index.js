@@ -5,22 +5,20 @@ const initialState = 10
 const reducer = (state = 0, action) => {
   switch(action.type) {
     case 'INC': return state = state + 1 // need 'return'
+    case 'DEC': return state = state - 1
     default: return state
   }
 }
 const store = createStore(reducer)
 store.subscribe(() => {
-  console.log(store.getState()) //will be fulfilled when the state is changed
+  document.querySelector('.counter').innerText = store.getState() //will be fulfilled when the state is changed
 })
-store.dispatch({ type: 'INC' })
-store.dispatch({ type: 'INC' })
-store.dispatch({ type: 'INC' })
-// let state = reducer(undefined, { type: 'INC', })
-// state = reducer(state, { type: 'INC', })
-// state = reducer(state, { type: 'INC', })
-// state = reducer(state, { type: 'INC', })
-// state = reducer(state, { type: 'INC', })
-// console.log(state)
+document.querySelector('#dec').addEventListener('click', () => {
+  store.dispatch({ type: 'DEC' })
+})
+document.querySelector('#inc').addEventListener('click', () => {
+  store.dispatch({ type: 'INC' })
+})
 createRoot(document.querySelector('#root')).render(
   <StrictMode>
 
