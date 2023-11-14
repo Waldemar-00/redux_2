@@ -1,11 +1,12 @@
 import { StrictMode } from 'react' 
 import { createRoot } from 'react-dom/client' 
 import { createStore } from 'redux'
-const initialState = 10
+// const initialState = 10
 const reducer = (state = 0, action) => {
   switch(action.type) {
-    case 'INC': return state = state + 1 // need 'return'
-    case 'DEC': return state = state - 1
+    case 'INC': return state + 1 // need 'return'
+    case 'DEC': return state - 1
+    case 'RANDOM' : return state = (Math.random() * 100).toFixed()
     default: return state
   }
 }
@@ -18,6 +19,9 @@ document.querySelector('#dec').addEventListener('click', () => {
 })
 document.querySelector('#inc').addEventListener('click', () => {
   store.dispatch({ type: 'INC' })
+})
+document.querySelector('#random').addEventListener('click', () => {
+  store.dispatch({ type: 'RANDOM' })
 })
 createRoot(document.querySelector('#root')).render(
   <StrictMode>
