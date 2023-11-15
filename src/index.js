@@ -1,7 +1,7 @@
 import { StrictMode } from 'react' 
 import { createRoot } from 'react-dom/client' 
 import { createStore, bindActionCreators } from 'redux'
-import { increment, decrement, random }  from './actions'
+import * as actions  from './actions'
 import reducer from './reducer'
 
 const store = createStore(reducer)
@@ -12,11 +12,7 @@ const { dispatch, getState, subscribe } = store
 // const incDispatch = bindActionCreators(increment, dispatch)
 // const decDispatch = bindActionCreators(decrement, dispatch)
 // const rndDispatch = bindActionCreators(() => random((Math.random() * 100).toFixed()), dispatch)
-const actionsDispatch = bindActionCreators({
-  increment,
-  decrement,
-  random, 
-}, dispatch)
+const actionsDispatch = bindActionCreators(actions, dispatch)
 subscribe(() => {
   document.querySelector('.counter').innerText = getState().counter
 })
