@@ -6,15 +6,15 @@ import reducer from './reducer'
 
 const store = createStore(reducer)
 const { dispatch, getState, subscribe } = store
-const icrementWithDispatch = () => dispatch(increment())
-const decrementWithDispatch = () => dispatch(decrement())
-const randomWithDispatch = () => dispatch(random((Math.random() * 100).toFixed()))
+function bindActionCreator(dispatch, actionCreator, ...args) { //analog of the function bindActionCreators from Redux
+  return dispatch(actionCreator(...args))
+}
 subscribe(() => {
   document.querySelector('.counter').innerText = getState().counter
 })
-document.querySelector('#inc').addEventListener('click',  icrementWithDispatch)
-document.querySelector('#dec').addEventListener('click',  decrementWithDispatch)
-document.querySelector('#random').addEventListener('click', randomWithDispatch)
+document.querySelector('#inc').addEventListener('click', () => bindActionCreator(dispatch, increment))
+document.querySelector('#dec').addEventListener('click', () => bindActionCreator(dispatch, decrement))
+document.querySelector('#random').addEventListener('click', () => bindActionCreator(dispatch, random, (Math.random() * 100).toFixed()))
 createRoot(document.querySelector('#root')).render(
   <StrictMode>
 
