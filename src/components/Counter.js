@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import * as actions from '../store/actions'
-import { bindActionCreators } from 'redux'
+// import { bindActionCreators } from 'redux'
 function Counter({ counter, inc, dec, rnd }) {
   return (
     <div className="jumbotron">
@@ -25,5 +25,5 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch)
-export default connect(mapStateToProps, mapDispatchToProps)(Counter)
+// const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch)
+export default connect(mapStateToProps, actions )(Counter)
