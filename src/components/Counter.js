@@ -30,10 +30,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     inc,
     dec,
-    rnd: () => {
-      const number = Math.floor(Math.random() * 100)
-      rnd(number)
-    }
+    rnd
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Counter)
