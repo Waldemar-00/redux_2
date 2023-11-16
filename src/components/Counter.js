@@ -1,17 +1,18 @@
 import { connect } from 'react-redux'
-function Counter({ counter, increment, decrement, random }) {
+import {increment, decrement, random} from '../store/actions'
+function Counter({ counter, inc, dec, rnd }) {
   return (
     <div className="jumbotron">
       <h1 className="counter">{counter}</h1>
       <div className="buttons">
         <button className="btn btn-primary"
-          onClick={ decrement }
+          onClick={ dec }
         >DEC</button>
         <button className="btn btn-primary"
-          onClick={ increment }
+          onClick={ inc }
         >INC</button>
         <button className="btn btn-primary"
-          onClick={() => random((Math.random() * 100).toFixed())}
+          onClick={ rnd }
         >RANDOM</button>
       </div>
     </div>
@@ -24,9 +25,12 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    increment: () => dispatch({type: 'INC'}),
-    decrement: () => dispatch({type: 'DEC'}),
-    random: () => dispatch({ type: 'RND', payload: (Math.random() * 100).toFixed() })
+    inc: () => dispatch(increment()),
+    dec: () => dispatch(decrement()),
+    rnd: () => {
+      const number = Math.floor(Math.random() * 100)
+      dispatch(random(number))
+    }
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Counter)
