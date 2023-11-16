@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
-import {increment, decrement, random} from '../store/actions'
+import * as actions from '../store/actions'
+import { bindActionCreators } from 'redux'
 function Counter({ counter, inc, dec, rnd }) {
   return (
     <div className="jumbotron">
@@ -23,13 +24,15 @@ const mapStateToProps = (state) => {
     counter: state.counter
   }
 }
+
 const mapDispatchToProps = (dispatch) => {
+  const actionsWithDispatch = bindActionCreators(actions, dispatch)
   return {
-    inc: () => dispatch(increment()),
-    dec: () => dispatch(decrement()),
+    inc: actionsWithDispatch.increment,
+    dec: actionsWithDispatch.decrement,
     rnd: () => {
       const number = Math.floor(Math.random() * 100)
-      dispatch(random(number))
+      actionsWithDispatch.random(number)
     }
   }
 }
