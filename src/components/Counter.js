@@ -26,13 +26,13 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const actionsWithDispatch = bindActionCreators(actions, dispatch)
+  const { inc, dec, rnd } = bindActionCreators(actions, dispatch)
   return {
-    inc: actionsWithDispatch.increment,
-    dec: actionsWithDispatch.decrement,
+    inc,
+    dec,
     rnd: () => {
       const number = Math.floor(Math.random() * 100)
-      actionsWithDispatch.random(number)
+      rnd(number)
     }
   }
 }
