@@ -8,7 +8,7 @@ const reducer = (state = { counter: 0 }, action) => {
       ...state,
       counter: state.counter - 1
     }
-    case 'RANDOM': return {
+    case 'RND': return {
       ...state,
       counter: action.payload
     }

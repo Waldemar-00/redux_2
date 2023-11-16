@@ -1,0 +1,17 @@
+.jumbotron {
+  margin: 40px auto;
+  width: 1200px;
+}
+.counter {
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+.buttons {
+  margin: 0 auto;
+  width: 200px;
+  text-align: center;
+}
+.buttons button {
+  margin: 10px;
+}

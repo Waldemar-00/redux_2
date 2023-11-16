@@ -1,29 +1,14 @@
 import { StrictMode } from 'react' 
-import { createRoot } from 'react-dom/client' 
-import { createStore, bindActionCreators } from 'redux'
-import * as actions  from './actions'
-import reducer from './reducer'
-
-const store = createStore(reducer)
-const { dispatch, getState, subscribe } = store
-// function bindActionCreator(dispatch, actionCreator, ...args) { //analog of the function bindActionCreators from Redux
-  // return dispatch(actionCreator(...args))
-// }
-// const incDispatch = bindActionCreators(increment, dispatch)
-// const decDispatch = bindActionCreators(decrement, dispatch)
-// const rndDispatch = bindActionCreators(() => random((Math.random() * 100).toFixed()), dispatch)
-const actionsDispatch = bindActionCreators(actions, dispatch)
-subscribe(() => {
-  document.querySelector('.counter').innerText = getState().counter
-})
-document.querySelector('#inc').addEventListener('click', actionsDispatch.increment)
-document.querySelector('#dec').addEventListener('click', actionsDispatch.decrement )
-document.querySelector('#random').addEventListener('click', () => {
-  actionsDispatch.random((Math.random() * 100).toFixed())
-})
+import { createRoot } from 'react-dom/client'
+import { Provider } from 'react-redux'
+import Counter from './Counter'
+import { store } from './store'
+import './index.css'
 createRoot(document.querySelector('#root')).render(
   <StrictMode>
-
+    <Provider store={store}>
+      <Counter />
+    </Provider>
   </StrictMode>
 ) 
 
