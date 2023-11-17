@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 // import { bindActionCreators } from 'redux'
 function Counter() {
-  const { counter } = useSelector(state => state)
+  const counter = useSelector(state => state.counter) //!You have to use only simple values, no objects!!!
   const dispatch = useDispatch()
   return (
     <div className="jumbotron">
